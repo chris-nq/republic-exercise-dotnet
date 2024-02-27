@@ -23,8 +23,6 @@ class Program
                 {
                     Console.WriteLine("No terrain specified, generating for all terrains");
                 }
-                Console.WriteLine(o.Terrain is not null);
-                Console.WriteLine(o.Terrain?.Any());
                 var terrainsOutput = o.Terrain is not null && o.Terrain.Any() ? string.Join(", ", o.Terrain.ToArray()) : "all";
                 Console.WriteLine($"Generating CSV for terrains: {terrainsOutput}");
                 var archive = new PlanetaryArchive(o.DataDir ?? "data");
