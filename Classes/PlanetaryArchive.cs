@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Text.Json;
 
-namespace republic_exam_dotnet.Classes
+namespace RepublicExerciseDotNET.Classes
 {
     public class PlanetaryArchive : IEnumerable<Planet>
     {

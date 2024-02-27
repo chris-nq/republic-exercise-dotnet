@@ -5,7 +5,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.VisualBasic.FileIO;
 
-namespace republic_exam_dotnet.Classes
+namespace RepublicExerciseDotNET.Classes
 {
     public class PlanetaryScanner
     {

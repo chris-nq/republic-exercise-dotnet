@@ -1,4 +1,4 @@
-namespace republic_exam_dotnet.Classes
+namespace RepublicExerciseDotNET.Classes
 {
     public class PlanetsData
     {

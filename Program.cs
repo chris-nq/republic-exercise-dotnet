@@ -1,7 +1,7 @@
 ﻿using CommandLine;
-using republic_exam_dotnet.Classes;
+using RepublicExerciseDotNET.Classes;
 
-namespace republic_exam_dotnet;
+namespace RepublicExerciseDotNET;
 class Program
 {
     public class Options
