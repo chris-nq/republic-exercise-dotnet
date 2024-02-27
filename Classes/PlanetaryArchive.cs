@@ -7,12 +7,8 @@ namespace RepublicExerciseDotNET.Classes
     {
         public PlanetaryArchive(string dataDirectory)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
             DataDirectory = Path.GetFullPath(dataDirectory);
-            if (!Directory.Exists(DataDirectory))
-            {
-                throw new DirectoryNotFoundException("Invalid data directory.");
-            }
+            Utils.ThrowIfPathDoesNotExist(DataDirectory, "Invalid data directory.");
         }
 
         public string DataDirectory { get; }

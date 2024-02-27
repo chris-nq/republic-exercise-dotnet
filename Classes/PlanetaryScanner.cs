@@ -9,7 +9,13 @@ namespace RepublicExerciseDotNET.Classes
 {
     public class PlanetaryScanner
     {
-        public string? OutputDir { get; set; }
+        public PlanetaryScanner(string outputDir)
+        {
+            OutputDir = Path.GetFullPath(outputDir);
+            Utils.ThrowIfPathDoesNotExist(OutputDir, "Invalid output directory.");
+        }
+        public string OutputDir { get; set; }
+        public string? Filename { get; set; }
         public string[] Headers = new string[] { "Name", "Terrain", "Population" };
         public string[] Terrains = Array.Empty<string>();
         public void Scan(string[] terrains, PlanetaryArchive archive)
@@ -24,7 +30,8 @@ namespace RepublicExerciseDotNET.Classes
                 ShouldQuote = (a) => a.Row.HeaderRecord is not null,
                 NewLine = Environment.NewLine,
             };
-            using var writer = new StreamWriter(Path.Combine(OutputDir ?? ".", filename));
+            Filename = Path.Combine(OutputDir, filename);
+            using var writer = new StreamWriter(Filename);
             using var csv = new CsvWriter(writer, config);
             csv.WriteHeader<Planet>();
             csv.NextRecord();
