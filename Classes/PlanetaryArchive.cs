@@ -24,7 +24,7 @@ namespace RepublicExerciseDotNET.Classes
             {
                 string json = File.ReadAllText(file);
                 var deserialized = JsonSerializer.Deserialize<PlanetsData>(json);
-                if (deserialized?.results != null)
+                if (deserialized?.results is not null)
                 {
                     foreach (var planet in deserialized.results)
                     {
