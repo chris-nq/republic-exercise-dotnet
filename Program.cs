@@ -1,12 +1,27 @@
-﻿using republic_exam_dotnet.Classes;
+﻿using CommandLine;
+using republic_exam_dotnet.Classes;
 
 namespace republic_exam_dotnet;
 class Program
 {
+    public class Options
+    {
+        [Value(0, MetaName = "terrain", Required = false, HelpText = "Terrain values")]
+        public IEnumerable<string>? Terrain { get; set; }
+        [Option('o', "output-dir", Required = false, HelpText = "Set output directory.")]
+        public string? OutputDir { get; set; }
+        [Option('d', "data-dir", Required = false, HelpText = "Set data directory.")]
+        public string? DataDir { get; set; }
+
+    }
     static void Main(string[] args)
     {
-        var archive = new PlanetaryArchive("./data");
-        var scanner = new PlanetaryScanner();
-        scanner.WriteToCsv(new string[] { "mountains" }, archive);
-    }
+        Parser.Default.ParseArguments<Options>(args)
+            .WithParsed(o =>
+            {
+                var archive = new PlanetaryArchive(o.DataDir ?? "data");
+                var scanner = new PlanetaryScanner();
+                scanner.Scan(o.Terrain?.ToArray() ?? Array.Empty<string>(), archive);
+            });
+}
 }

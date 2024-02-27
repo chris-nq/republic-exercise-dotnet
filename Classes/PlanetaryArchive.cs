@@ -7,6 +7,7 @@ namespace republic_exam_dotnet.Classes
     {
         public PlanetaryArchive(string dataDirectory)
         {
+            var currentDirectory = Directory.GetCurrentDirectory();
             DataDirectory = Path.GetFullPath(dataDirectory);
             if (!Directory.Exists(DataDirectory))
             {
@@ -27,9 +28,9 @@ namespace republic_exam_dotnet.Classes
             {
                 string json = File.ReadAllText(file);
                 var deserialized = JsonSerializer.Deserialize<PlanetsData>(json);
-                if (deserialized?.Results != null)
+                if (deserialized?.results != null)
                 {
-                    foreach (var planet in deserialized.Results)
+                    foreach (var planet in deserialized.results)
                     {
                         yield return planet;
                     }
