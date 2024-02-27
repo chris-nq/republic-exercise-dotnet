@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace RepublicExerciseDotNET.Classes
 {
     public class Utils
@@ -8,6 +10,12 @@ namespace RepublicExerciseDotNET.Classes
             {
                 throw new DirectoryNotFoundException(message);
             }
+        }
+
+        public static string ReplaceBadChars(string input)
+        {
+            Regex regex = new("[\"|]");
+            return regex.Replace(input, "_");
         }
     }
 }

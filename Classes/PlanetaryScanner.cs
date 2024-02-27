@@ -43,6 +43,9 @@ namespace RepublicExerciseDotNET.Classes
                 if (terrains.Length == 0 || planetTerrains.Intersect(terrains).Any())
                 {
                     // Console.WriteLine(planet.name);
+                    planet.name = Utils.ReplaceBadChars(planet.name);
+                    planet.terrain = Utils.ReplaceBadChars(planet.terrain);
+                    planet.population = Utils.ReplaceBadChars(planet.population);
                     csv.WriteRecord(planet);
                     csv.NextRecord();
                 }
